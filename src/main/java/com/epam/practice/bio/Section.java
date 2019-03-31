@@ -4,12 +4,30 @@ import java.util.Objects;
 
 public class Section {
 
-    // TODO implement this class
+    private String subString;
+
+    public Section() {
+
+    }
+
+    public Section(String subString) {
+        this.subString = subString;
+    }
+
+    @Override
+    public String toString() {
+        return subString;
+    }
 
     @Override
     public boolean equals(Object other) {
         return this == other
             || other != null && getClass() == other.getClass()
             && Objects.equals(this.toString(), other.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return subString.hashCode();
     }
 }
