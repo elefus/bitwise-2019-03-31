@@ -22,8 +22,7 @@ public class Solver {
         int n = Integer.parseInt(bufferedReader.readLine());
         String line = bufferedReader.readLine();
 
-
-        for (int i = 0; i < line.length() - 1; i++) {
+        for (int i = 0; i < line.length() - (n - 1); i++) {
             String substring = line.substring(i, i + n);
             Section section = new Section(n, substring);
 
