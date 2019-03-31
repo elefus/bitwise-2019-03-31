@@ -20,8 +20,7 @@ class SolverTest extends AbstractTestWithResources {
 
     @BeforeEach
     void setUp() {
-        solver = null;
-        throw new UnsupportedOperationException();
+        solver = new Solver();
     }
 
     @Test
