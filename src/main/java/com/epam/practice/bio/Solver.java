@@ -26,7 +26,8 @@ public class Solver {
             count++;
             if (sb.length() < M) {
                 sb.append(c);
-            } else {
+            }
+            else {
                 Section sec = new Section();
                 sec.section = sb.toString();
                 map.merge(sec, Collections.singletonList(count - M), (oldVal, newVal) -> Stream
@@ -35,6 +36,10 @@ public class Solver {
                 sb = new StringBuilder(sb.subSequence(1,sb.length()));
             }
         }
+        Section sec = new Section();
+        sec.section = sb.toString();
+        map.merge(sec, Collections.singletonList(++count - M), (oldVal, newVal) -> Stream
+            .concat(oldVal.stream(),newVal.stream()).collect(Collectors.toList()));
         return map;
     }
 }
