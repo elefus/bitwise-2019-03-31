@@ -1,6 +1,7 @@
 package com.epam.practice.bio;
 
 import com.epam.practice.AbstractTestWithResources;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,7 @@ class SolverTest extends AbstractTestWithResources {
 
     @BeforeEach
     void setUp() {
-        solver = null;
-        throw new UnsupportedOperationException();
+        solver = new Solver();
     }
 
     @Test
@@ -39,6 +39,7 @@ class SolverTest extends AbstractTestWithResources {
         hasEntry(new DummySection("TG"), singletonList(7));
     }
 
+    @EqualsAndHashCode(callSuper = true)
     @Value
     private static class DummySection extends Section {
         String section;
