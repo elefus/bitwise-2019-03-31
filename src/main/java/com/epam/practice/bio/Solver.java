@@ -1,25 +1,45 @@
 package com.epam.practice.bio;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Solver {
 
     public Map<Section, List<Integer>> analyze(File input) throws IOException {
         BufferedReader re = new BufferedReader(new FileReader(input));
-        String string = re.readLine();
-        if (string == null) {
+        String subStringLen = re.readLine();
+        if (subStringLen == null) {
             return Collections.emptyMap();
         }
-        Map<Section, List<Integer>> result = getResult(string, ThreadLocalRandom.current().nextInt(5, 1001));
+        String molecule = re.readLine();
+        if (molecule == null) {
+            return Collections.emptyMap();
+        }
+        Map<Section, List<Integer>> result = getResult(molecule, Integer.parseInt(subStringLen));
 
-        throw new UnsupportedOperationException();
+        return result;
     }
 
     public Map<Section, List<Integer>> getResult(String input, int subLength) {
-        return Collections.emptyMap();
+        TreeMap<Section, List<Integer>> result = new TreeMap<>();
+        for (int i = 0; i < input.length() - subLength; i++) {
+            String substring = input.substring(i, i + subLength);
+            Section section = new Section(substring);
+
+            List<Integer> positions = result.get(section);
+            if (positions != null) {
+                positions.add(i);
+                result.put(section, positions);
+            } else {
+                LinkedList<Integer> newArray = new LinkedList<>();
+                newArray.add(i);
+                result.put(section, newArray);
+            }
+
+        }
+
+
+        return result;
     }
 }
