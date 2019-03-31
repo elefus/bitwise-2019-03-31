@@ -20,8 +20,7 @@ class SolverTest extends AbstractTestWithResources {
 
     @BeforeEach
     void setUp() {
-        solver = null;
-        throw new UnsupportedOperationException();
+        solver = new Solver();
     }
 
     @Test
@@ -29,6 +28,7 @@ class SolverTest extends AbstractTestWithResources {
         File source = getTestFile(SolverTest.class, "baseTest.txt");
 
         Map<Section, List<Integer>> result = solver.analyze(source);
+
 
         assertEquals(6, result.size());
         hasEntry(new DummySection("AC"), singletonList(0));
@@ -42,5 +42,10 @@ class SolverTest extends AbstractTestWithResources {
     @Value
     private static class DummySection extends Section {
         String section;
+
+        public DummySection(String section) {
+            super(section);
+            this.section = section;
+        }
     }
 }
