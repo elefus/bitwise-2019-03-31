@@ -14,13 +14,13 @@ public interface Permissions {
 
     boolean has(Permission permission, Permission...other);
 
+    Type getType();
+
     /**
      * @param other permissions that need to be added.
      * @throws IllegalArgumentException mismatch types of current and other permissions.
      */
     void merge(Permissions other) throws IllegalArgumentException;
-
-    Type getType();
 
     enum Type {
         GUEST,

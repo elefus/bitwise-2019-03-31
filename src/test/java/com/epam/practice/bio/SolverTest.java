@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Collections.singletonList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,8 +21,7 @@ class SolverTest extends AbstractTestWithResources {
 
     @BeforeEach
     void setUp() {
-        solver = null;
-        throw new UnsupportedOperationException();
+        solver = new Solver();
     }
 
     @Test
@@ -30,13 +30,11 @@ class SolverTest extends AbstractTestWithResources {
 
         Map<Section, List<Integer>> result = solver.analyze(source);
 
-        assertEquals(6, result.size());
-        hasEntry(new DummySection("AC"), singletonList(0));
-        hasEntry(new DummySection("CC"), Arrays.asList(1, 2, 5));
-        hasEntry(new DummySection("CG"), singletonList(3));
-        hasEntry(new DummySection("CT"), singletonList(6));
-        hasEntry(new DummySection("GC"), Arrays.asList(4, 8));
-        hasEntry(new DummySection("TG"), singletonList(7));
+        assertEquals(4, result.size());
+        assertThat(result, hasEntry(new DummySection("ACACA"), Arrays.asList(0, 2)));
+        assertThat(result, hasEntry(new DummySection("CACAC"), Arrays.asList(1, 3)));
+        assertThat(result, hasEntry(new DummySection("ACACG"), singletonList(4)));
+        assertThat(result, hasEntry(new DummySection("CACGT"), singletonList(5)));
     }
 
     @Value

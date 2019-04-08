@@ -9,7 +9,7 @@ public class Section {
     @Override
     public boolean equals(Object other) {
         return this == other
-            || other != null && getClass() == other.getClass()
+            || other instanceof Section
             && Objects.equals(this.toString(), other.toString());
     }
 }
